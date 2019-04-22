@@ -1,0 +1,25 @@
+# docker-compose.yml
+version: '3'
+services:
+  postgres-server:
+    image: postgres
+    #restart: always
+    volumes:
+      - data:/var/lib/postgresql/data
+    
+  api:
+    build: .
+    restart: always
+    volumes:
+      - .:/code
+    # environment:
+    #   - PGUSER=postgres
+    #   - PGHOST=postgres
+    #   - PGDATABASE=postgres
+    #   - PGPASSWORD=postgres_password
+    #   - PGPORT=5432
+    env_file:
+      - .env  
+
+volumes:
+  data: 
