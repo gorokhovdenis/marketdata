@@ -1,0 +1,26 @@
+sudo: required
+language: generic
+services:
+- docker
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+env:
+  global:
+  - PORT=55333
+  - DEPLOY_DIR=/home/Docker/natgeo/
+before_install:
+- openssl aes-256-cbc -K $encrypted_59648f6afd5a_key -iv $encrypted_59648f6afd5a_iv
+  -in deploy_key.enc -out ./deploy_key -d
+after_success:
+
+- docker build -t gorokhovdenis/marketdata .
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+- docker push gorokhovdenis/marketdata
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: chmod 600 deploy_key && ssh -p $PORT -o StrictHostKeyChecking=no -i deploy_key root@$IP $DEPLOY_DIR/deploy.sh
+  on:
+    branch: master
