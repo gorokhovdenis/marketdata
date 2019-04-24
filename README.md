@@ -1,3 +1,2 @@
-#
 market data collector
 #
