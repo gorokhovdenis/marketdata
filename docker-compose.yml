@@ -9,8 +9,8 @@ services:
   api:
     build: .
     restart: always
-    volumes:
-      - .:/code
+#    volumes:
+#      - .:/code
     # environment:
     #   - PGUSER=postgres
     #   - PGHOST=postgres

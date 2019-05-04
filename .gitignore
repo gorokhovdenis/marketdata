@@ -1,0 +1,10 @@
+latest
+logs
+postgres
+test.py
+.vscode/launch.json
+.env
+deploy_key
+code1.py
+docker-compose.yml
+postgres.yml
