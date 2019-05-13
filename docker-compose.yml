@@ -11,12 +11,6 @@ services:
     restart: always
     volumes:
       - .:/code
-    # environment:
-    #   - PGUSER=postgres
-    #   - PGHOST=postgres
-    #   - PGDATABASE=postgres
-    #   - PGPASSWORD=postgres_password
-    #   - PGPORT=5432
     env_file:
       - .env  
 
